@@ -7,14 +7,18 @@
 // Sincronizando os comandos
 // Primeiro parametro é o ERRO e o segundo o SUCESSO / Callback
 
-function obterUsuario(callback) {
-    setTimeout(function() {     // função de espera
-        return callback(null, {
-            id: 1,
-            nome: 'Aladin',
-            dataNascimento: new Date()      // criar datas
-        })
-    }, 1000)
+function obterUsuario() {
+    // Quando der algum problema -> Reject(ERRO)
+    // Quando for sucesso -> Resolve
+    return new Promisse(function resolvePromisse(resolve, reject) {
+        setTimeout(function() {     // função de espera
+            return resolve({
+                id: 1,
+                nome: 'Aladin',
+                dataNascimento: new Date()      // criar datas
+            })
+        }, 1000)
+    })
 }
 
 function obterTelefone(idUsuario, callback) {
@@ -35,35 +39,47 @@ function obterEndereco(idUsuario, callback) {
     }, 2000)
 }
 
-function resolverUsuario(erro, usuario) {
-    console.log('Usuário: ', usuario)
-}
+const usuarioPromisse = obterUsuario()
+// Para manipular o sucesso usamos a função .then
+// Paras manipular erros usamos o .catch
 
-obterUsuario(function resolverUsuario(error, usuario) {
-    // null // '' // 0 === false
-    if(error) {
-        console.error('DEU RUIM EM USUÁRIO ',error)
-        return
-    }
-    obterTelefone(usuario.id, function resovlerTelefone(error1, telefone) {
-        if(error1) {
-            console.error('DEU RUIM EM TELEFONE ', error)
-            return
-        }
-        obterEndereco(usuario.id, function resolverEndereco(error2, endereco) {
-            if(error2) {
-                console.error('DEU RUIM EM ENDEREÇO ', error)
-                return
-            }
 
-            console.log(`
-            Nome: ${usuario.nome},
-            Endereco: ${endereco.rua}, ${endereco.numero}
-            Telefone: ${telefone.ddd}) ${telefone.telefone}
-            `)
-        })
-    })
-})
+
+
+
+
+
+
+
+
+
+
+
+// obterUsuario(function resolverUsuario(error, usuario) {
+//     // null // '' // 0 === false
+//     if(error) {
+//         console.error('DEU RUIM EM USUÁRIO ',error)
+//         return
+//     }
+//     obterTelefone(usuario.id, function resovlerTelefone(error1, telefone) {
+//         if(error1) {
+//             console.error('DEU RUIM EM TELEFONE ', error)
+//             return
+//         }
+//         obterEndereco(usuario.id, function resolverEndereco(error2, endereco) {
+//             if(error2) {
+//                 console.error('DEU RUIM EM ENDEREÇO ', error)
+//                 return
+//             }
+
+//             console.log(`
+//             Nome: ${usuario.nome},
+//             Endereco: ${endereco.rua}, ${endereco.numero}
+//             Telefone: ${telefone.ddd}) ${telefone.telefone}
+//             `)
+//         })
+//     })
+// })
 
 // const telefone = obterTelefone(usuario.id)
 
