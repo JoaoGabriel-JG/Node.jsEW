@@ -8,6 +8,7 @@ const util = require('util')
 const obterEnderecoAsync = util.promisify(obterEndereco)
 
 
+
 // Sincronizando os comandos
 // Primeiro parametro é o ERRO e o segundo o SUCESSO / Callback
 
@@ -65,8 +66,22 @@ usuarioPromisse
             }
         })
     })
+    .then(function (resultado) {
+        const endereco = obterEnderecoAsync(resultado.usuario.id)
+        return endereco.then(function resolverEndereco(result) {
+            return {
+                usuario: resultado.usuario,
+                telefone: resultado.telefone,
+                endereco: result
+            }
+        })
+    })
     .then(function(resultado) {
-        console.log('resultado ', resultado)
+        console.log(`
+            Nome: ${ resultado.usuario.nome }
+            Endereço: ${ resultado.endereco.rua }, ${ resultado.endereco.numero }
+            Telefone: (${ resultado.telefone.ddd }) ${ resultado.telefone.telefone }
+        `)
     })
     .catch(function(error) {
         console.error('DEU RUIM ', error)
