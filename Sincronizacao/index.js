@@ -87,11 +87,6 @@ usuarioPromisse
         console.error('DEU RUIM ', error)
     })
 
-
-
-
-
-
 // obterUsuario(function resolverUsuario(error, usuario) {
 //     // null // '' // 0 === false
 //     if(error) {
