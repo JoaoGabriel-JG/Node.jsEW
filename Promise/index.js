@@ -39,8 +39,8 @@ main()  // Sempre chamar o metodo antes da função
 async function main() {
     try {
         const usuario = await obterUsuario()
-        const telefone = await obterTelefone()
-        const endereco = await obterEnderecoAsync()
+        const telefone = await obterTelefone(usuario.id)
+        const endereco = await obterEnderecoAsync(usuario.id) 
 
         console.log(`
             Nome: ${usuario.nome},
