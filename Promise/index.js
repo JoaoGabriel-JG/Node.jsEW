@@ -38,17 +38,26 @@ function obterEndereco(idUsuario, callback) {
 main()  // Sempre chamar o metodo antes da função
 async function main() {
     try {
+        console.time('medida-promise')
         const usuario = await obterUsuario()
-        const telefone = await obterTelefone(usuario.id)
-        const endereco = await obterEnderecoAsync(usuario.id) 
+        // const telefone = await obterTelefone(usuario.id)
+        // const endereco = await obterEnderecoAsync(usuario.id) 
+
+        const resultado = await Promise.all([   // Diminuindo o tempo de execução
+            obterTelefone(usuario.id),
+            obterEnderecoAsync(usuario.id) 
+        ])
+        const endereco = resultado[1]
+        const telefone = resultado[0]
 
         console.log(`
             Nome: ${usuario.nome},
             Telefone: (${telefone.ddd}) ${telefone.telefone},
             Endereco: ${endereco.rua} ${endereco.numero}
         `)
-    }
-    catch(error) {
+        console.timeEnd('medida-promise')
+
+    } catch(error) {
         console.error('DEU RUIM ', error)
     }
 }
