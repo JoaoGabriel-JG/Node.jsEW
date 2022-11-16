@@ -28,7 +28,6 @@ stdin.addListener('data', function (value) {        // Esperar a alteração de 
 
 
 
-
 // ERRO: a Promise é usada para executar somente uma vez
 
 // const stdin = process.openStdin()
