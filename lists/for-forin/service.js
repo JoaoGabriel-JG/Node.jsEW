@@ -1,6 +1,16 @@
 const axios = require('axios')
-const url = `https://swapi.com/api/people`
+const URL = `https://swapi.co/api/people`
 
 async function obterPessoas (nome) {    // Para manipular Promise
-    const url = `${URL}/`
+    const url = `${URL}/?search=${nome}&format=json`
+    const response = await axios.get(url)
+    return response.data
 }      
+
+obterPessoas('r2')
+    .then(function (resultado) {
+        console.log('resultado ', resultado)
+    })
+    .catch(function (error) {
+        console.error('DEU RUIM', error)
+    })
