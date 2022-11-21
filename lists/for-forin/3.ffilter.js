@@ -1,4 +1,4 @@
-const { obterPessoas } = require('./service')   // Do JSON eu quero somente o obterPessoas
+const { obterPessoas } = require('./service')   // Do JSON eu quero somente o obterPessoas \\
 
 /*
 DESTRUCTURING
@@ -15,7 +15,7 @@ console.log(nome, idade)
 
 */
 
-Array.prototype.meuFilter = function (callback) {   // prototype extensão para manipular Array
+Array.prototype.meuFilter = function (callback) {   // prototype extensão para manipular Array \\
     const lista = []
     for(index in this) {
         const item = this[index]
