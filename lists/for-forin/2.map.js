@@ -10,7 +10,7 @@ Array.prototype.meuMap = function (callback) {  // Substituir uma função globa
     return novoArrayMapeado
 } 
 
-// Mappode ser um for reduzido \\
+// Map pode ser um for reduzido \\
 
 async function main () {
     try {
