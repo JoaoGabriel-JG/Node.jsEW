@@ -3,6 +3,8 @@ const { obterPessoas } = require('./service')
 
 // Programação Orientada a Testes
 // Instalamos o pacote nock, para simular requisições
+
+// Teste de validação de entrada e saida
 const nock = require('nock')
 
 
@@ -41,7 +43,7 @@ describe('Star Wars Tests', function () {
 
     it('deve buscar o r2d2 com o formato correto', async () => {
         const expected = [{ 
-            nome: 'R2-D2', 
+            nome: 'R2-D2',  // Cuidado com os parametros passados
             peso: '96' 
         }]
         const nomeBase = `r2-d2`
