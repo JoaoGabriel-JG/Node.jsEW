@@ -75,7 +75,7 @@ class dataBase {
 
     async atualizar(id, modificacoes) {
         const dados = await this.obterDadosArquivo()
-        const indice = dados.findIndex(item => item.id === árseInt(id))
+        const indice = dados.findIndex(item => item.id === parseInt(id))
         if(indice === -1) {
             throw Error('O heroi informado não existe')
         }
@@ -88,10 +88,8 @@ class dataBase {
         
         return await this.escreverArquivo([
             ...dados,
-            modificacoes
+            objetoAtualizar
         ])
-
-        return false
     }
 }
 

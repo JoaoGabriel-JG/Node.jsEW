@@ -16,6 +16,7 @@ const DEFAULT_ITEM_ATUALIZAR = {
 describe('Suite de manipulação de Herois', () => {  // Suite de teste 
     before (async() => {
         await dataBase.cadastrar(DEFAULT_ITEM_CADASTRAR)
+        await dataBase.cadastrar(DEFAULT_ITEM_ATUALIZAR)
     })
     it('Deve pesquisar um heroi usando arquivos', async () => {
         const expected = DEFAULT_ITEM_CADASTRAR
@@ -48,7 +49,7 @@ describe('Suite de manipulação de Herois', () => {  // Suite de teste
             poder: 'Gente Boa'
         }
         await dataBase.atualizar(DEFAULT_ITEM_ATUALIZAR.id, novoDado)
-        const resultado = await dataBase.listar(DEFAULT_ITEM_ATUALIZAR.id)
+        const [ resultado ] = await dataBase.listar(DEFAULT_ITEM_ATUALIZAR.id)
         deepEqual(resultado, expected)
     })
 })
