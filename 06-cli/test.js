@@ -27,7 +27,7 @@ describe('Suite de manipulação de Herois', () => {  // Suite de teste
 
         deepEqual(actual, expected)
     })
-    it.only('Deve remover um heroi por id', async () => {
+    it('Deve remover um heroi por id', async () => {
         const expected = true
         const resultado = await database.remover(DEFAULT_ITEM_CADASTRAR.id)
         deepEqual(resultado, expected)
