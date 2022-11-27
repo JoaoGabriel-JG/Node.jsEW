@@ -9,6 +9,9 @@ const DEFAULT_ITEM_CADASTRAR = {
 }
 
 describe('Suite de manipulação de Herois', () => {  // Suite de teste 
+    before (async() => {
+        await dataBase.cadastrar(DEFAULT_ITEM_CADASTRAR)
+    })
     it('Deve pesquisar um heroi usando arquivos', async () => {
         const expected = DEFAULT_ITEM_CADASTRAR
         const [ resultado ] = await database.listar(expected.id)    // Como pegar só a primeira posição do Array DESTRUCTURING []
@@ -24,4 +27,9 @@ describe('Suite de manipulação de Herois', () => {  // Suite de teste
 
         deepEqual(actual, expected)
     })
-}) 
+    it.only('Deve remover um heroi por id', async () => {
+        const expected = true
+        const resultado = await database.remover(DEFAULT_ITEM_CADASTRAR.id)
+        deepEqual(resultado, expected)
+    })
+})
