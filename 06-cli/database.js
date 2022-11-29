@@ -80,16 +80,12 @@ class dataBase {
             throw Error('O heroi informado não existe')
         }
         const atual = dados[ indice ]
-        const objetoAtualizar = {
-            ...atual,
-            modificacoes
-        }
         dados.splice(indice, 1)
-        
-        return await this.escreverArquivo([
-            ...dados,
-            objetoAtualizar
-        ])
+
+        const objAtualizado = JSON.parse(JSON.stringify(modificacoes))
+        const dadoAtualizado = Object.assign({}, atual, objAtualizado)
+
+        return await this.escreverArquivo([...dados, dadoAtualizado])
     }
 }
 
