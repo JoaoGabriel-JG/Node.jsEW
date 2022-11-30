@@ -52,3 +52,5 @@ describe('Suite de manipulação de Herois', () => {  // Suite de teste
         deepEqual(resultado, expected)
     })
 })
+
+
