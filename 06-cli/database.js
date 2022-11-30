@@ -1,8 +1,9 @@
 const { readFile, writeFile } = require('fs')
 const { promisify } = require('util')   // Trabalhando com Promise
-
-const readFileAsync = promisify(readFile)
-const writeFileAsync = promisify(writeFile)
+const [writeFileAsync, readFileAsync] = [
+    promisify(writeFile),
+    promisify(readFile),
+]
 
 // Outra forma de obter dados do JSON
 // const dadosJson = require('./herois.json')
@@ -11,14 +12,17 @@ class dataBase {
     constructor() {
         this.NOME_ARQUIVO = 'herois.json'
     }
+
     async obterDadosArquivo() {
         const arquivo = await readFileAsync(this.NOME_ARQUIVO, 'utf8')
         return JSON.parse(arquivo.toString())
     }
+
     async escreverArquivo(dados) {
         await writeFileAsync(this.NOME_ARQUIVO, JSON.stringify(dados))
         return true
     }
+
     async cadastrar(heroi) {
         const dados = await this.obterDadosArquivo()
         const id = heroi.id <= 2 ? heroi.id : Date.now()
@@ -82,6 +86,7 @@ class dataBase {
         const atual = dados[ indice ]
         dados.splice(indice, 1)
 
+        // Workaround para remover valores undefined do objeto
         const objAtualizado = JSON.parse(JSON.stringify(modificacoes))
         const dadoAtualizado = Object.assign({}, atual, objAtualizado)
 

@@ -17,6 +17,7 @@ describe('Suite de manipulação de Herois', () => {  // Suite de teste
         await dataBase.cadastrar(DEFAULT_ITEM_CADASTRAR)
         await dataBase.cadastrar(DEFAULT_ITEM_ATUALIZAR)
     })
+
     it('Deve pesquisar um heroi usando arquivos', async () => {
         const expected = DEFAULT_ITEM_CADASTRAR
         const [ resultado ] = await dataBase.listar(expected.id)    // Como pegar só a primeira posição do Array DESTRUCTURING []
@@ -32,11 +33,13 @@ describe('Suite de manipulação de Herois', () => {  // Suite de teste
 
         deepEqual(actual, expected)
     })
+
     it('Deve remover um heroi por id', async () => {
         const expected = true
         const resultado = await dataBase.remover(DEFAULT_ITEM_CADASTRAR.id)
         deepEqual(resultado, expected)
     })
+
     it('Deve atualizar um heroi pelo id', async () => {
         const expected = {
             ...DEFAULT_ITEM_ATUALIZAR,
@@ -48,9 +51,8 @@ describe('Suite de manipulação de Herois', () => {  // Suite de teste
             poder: expected.poder
         })
         
-        const [ resultado ] = await dataBase.listar(expected.id)
-        deepEqual(resultado, expected)
+        // console.log('expected', expected)    
+        const [ realResult ] = await dataBase.listar(expected.id)
+        deepEqual(realResult, expected)
     })
 })
-
-
