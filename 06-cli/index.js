@@ -1,8 +1,8 @@
-const Commander = require('commander')
+const { program, Command } = require('commander')
 const dataBase = require('./database')
 
 async function main() {
-    Commander
+    program
         .version('v1')
         .option('-n, --nome [value]', "Nome do Heroi")
         .option('-p, --poder [value]', "Poder do Heroi")
@@ -11,9 +11,9 @@ async function main() {
         .parse(process.agrv)
     }
     try {
-        if(Commander.cadastrar) {
-            console.log(Commander)
-            // const resultado = await dataBase.cadastrar(Commander)
+        if(Command.cadastrar) {
+            console.log(Command)
+            // const resultado = await dataBase.cadastrar(Command)
         }
     }
     catch (error) {
