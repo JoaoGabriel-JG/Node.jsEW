@@ -11,7 +11,10 @@ async function main() {
         .parse(process.agrv)
     }
     try {
-
+        if(Commander.cadastrar) {
+            console.log(Commander)
+            // const resultado = await dataBase.cadastrar(Commander)
+        }
     }
     catch (error) {
         console.error('DEU RUIM ', error)
