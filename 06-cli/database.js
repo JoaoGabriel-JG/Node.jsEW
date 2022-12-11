@@ -64,6 +64,22 @@ class dataBase {
         return dadosFiltrados
     }
 
+    
+    async atualizar(id, modificacoes) {
+        const dados = await this.obterDadosArquivo()
+        const indice = dados.findIndex(item => item.id === parseInt(id))
+        if(indice === -1) {
+            throw Error('O heroi informado não existe')
+        }
+        const atual = dados[ indice ]
+        dados.splice(indice, 1)
+        
+        // Workaround para remover valores undefined do objeto
+        const objAtualizado = JSON.parse(JSON.stringify(modificacoes))
+        const dadoAtualizado = Object.assign({}, atual, objAtualizado)
+        
+        return await this.escreverArquivo([...dados, dadoAtualizado])
+    }
     async remover(id) {
         if(!id) {
             return await this.escreverArquivo([])
@@ -74,23 +90,8 @@ class dataBase {
             throw Error('O heroi informado não existe')
         }
         dados.splice(indice, 1)
-        return await this.escreverArquivo(dados)
-    }
-
-    async atualizar(id, modificacoes) {
-        const dados = await this.obterDadosArquivo()
-        const indice = dados.findIndex(item => item.id === parseInt(id))
-        if(indice === -1) {
-            throw Error('O heroi informado não existe')
-        }
-        const atual = dados[ indice ]
-        dados.splice(indice, 1)
-
-        // Workaround para remover valores undefined do objeto
-        const objAtualizado = JSON.parse(JSON.stringify(modificacoes))
-        const dadoAtualizado = Object.assign({}, atual, objAtualizado)
-
-        return await this.escreverArquivo([...dados, dadoAtualizado])
+        await this.escreverArquivo(dados)
+        return true
     }
 }
 

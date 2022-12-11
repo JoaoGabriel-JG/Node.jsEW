@@ -1,62 +1,70 @@
-const { program, Command } = require('commander')
-const database = require('./database')
-const dataBase = require('./database')
+const commander = require('commander')
 const Heroi = require('./heroi')
+const dataBase = require('./database')
 
-async function main() {
-    program
-        .version('v1')
-        .option('-n, --nome [value]', "Nome do Heroi")
-        .option('-p, --poder [value]', "Poder do Heroi")
-        .option('-i, --id [value]', "ID do Heroi")
-
-        .option('-c, --cadastrar', "Cadastrar um Heroi")
-        .option('-l, --listar', "Listar um Heroi")
-        .option('-r, --remover', "Remove um Heroi pelo ID")
-        .option('-a, --atualizar [ value ]', "Atualizar um Heroi pelo ID")
-        .parse(process.argv)
-    
-    const heroi = new Heroi(Command) 
-    
+(async () => {
+    /*
+     * node cli.js --help
+     */
+    commander
+      .version('v1')
+      .option('-n, --nome [value]', 'adicionar nome')
+      .option('-p, --poder [value]', 'adicionar poder')
+      //CRUD
+      .option('-c, --cadastrar', 'cadastrar Heroi')
+      .option('-r, --listar [value]', 'listar herois pelo id')
+      .option('-u, --atualizar [value]', 'atualizar heroi pelo id')
+      .option('-d, --remover [value]', 'remover heroi pelo id')
+      .parse(process.argv)
+  
+    const heroi = new Heroi(commander)
     try {
-        if(Command.cadastrar) {
-            delete heroi.id
-
-            const resultado = await dataBase.cadastrar(heroi)
-            if(!resultado) {
-                console.error('Heroi não foi cadastrado')
-                return
-            }
-            console.log('Heroi cadastrado com sucesso')
-        }
-        if(Command.listar) {
-            const resultado = await dataBase.listar()
-            console.log(resultado)
-            return
-        }
-        if (Command.remover) {
-            const resultado = await dataBase.remover(heroi.id)
-            if(!resultado) {
-                console.error('Não foi possivel remover o heroi')
-            }
-            console.log('Heroi removido com sucesso')
-        }
-        if(Command.atualizar) {
-            const idParaAtualizar = parseInt(Command.atualizar)
-            // Remover todas as chaves com undefined | null
-            const dado = JSON.stringify(heroi)
-            const heroiAtualizar = JSON.parse(dado)
-            const resultado = await database.atualizar(idParaAtualizar, heroiAtualizar)
-            if(!resultado) {
-                console.error('Não foi possivel atualizar o heroi')
-                return
-            }
-            console.log('Heroi atualizado com sucesso!')
-        }
-    } 
-    catch (error) {
-        console.error('DEU RUIM ', error)
+      /*
+       * node cli.js --cadastrar params...
+       * node cli.js -c -n Hulk -p Forca
+       */
+      if (commander.cadastrar) {
+        await dataBase.cadastrar(heroi)
+        console.log('item cadastrado com sucesso!')
+        return
+      }
+  
+      /*
+       * node cli.js --listar
+       * node cli.js -r
+       * node cli.js -r 1
+       */
+      if (commander.listar) {
+        const id = commander.listar
+        const result = await dataBase.listar(id)
+        console.log(result)
+        return
+      }
+  
+      /**
+       * node cli.js --atualizar
+       * node cli.js -u 1 -n papa
+       * node cli.js -u 1 -n thor -p trovao
+       */
+      if (commander.atualizar) {
+        const id = commander.atualizar
+        console.log('id', id)
+        await dataBase.atualizar(id, heroi)
+        console.log('item atualizado com sucesso!')
+        return
+      }
+      /**
+       * node cli.js --remover
+       * node cli.js -d 1
+       */
+      if (commander.remover) {
+        const id = commander.remover
+        await dataBase.remover(id)
+        console.log('item removido com sucesso!')
+        return
+      }
+    } catch (error) {
+      console.error('DEU RUIM', error)
+      return
     }
-}
-
-main()
+  })()  
