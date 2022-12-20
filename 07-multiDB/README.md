@@ -17,3 +17,21 @@ docker run \    =================>> INTERFACE GRÁFICA
     --link postgres:postgres \
     -d \
     adminer
+
+
+----  MONGODB
+
+docker run \
+    --name mongodb \
+    -p 27017:27107
+    -e MONGO_INITDB_ROOT_USERNAME=admin \
+    -e MONGO_INITDB_ROOT_PASSWORD=Tete@1708 \
+    -d \
+    mongo: 4
+
+docker run \
+    --name mongoclient \
+    -p 3000:3000 \
+    --link mongodb:mongodb \
+    -d \
+    mongoclient/mongoclient
