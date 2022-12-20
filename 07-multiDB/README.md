@@ -35,3 +35,7 @@ docker run \
     --link mongodb:mongodb \
     -d \
     mongoclient/mongoclient
+
+docker exec -it mongodb \  =================>> criar um banco com usuário
+    mongo --host localhost -u admin -p Tete@1708 --authenticationDatabase admin \
+    --eval "db.getSiblingDB('herois').createUser({user: 'jgjgjg', pwd: 'senha123@', roles: [{role: 'readWrite',  db: 'herois'}]})"
