@@ -28,7 +28,7 @@ class MongoDB extends ICrud {   // Classe concreta para implementar funções th
     }
 
     create(item) {
-        console.log('Item foi salvo em MongoDB')
+        console.log('O item foi salvo em MongoDB')
     }
 }
 
@@ -42,7 +42,7 @@ class Postgres extends ICrud {
     }
 }
 
-class contextStrategy extends ICrud {       // Classe abstrata chama os metodos de acordo com as coisas que for passado no construtor
+class ContextStrategy {       // Classe abstrata chama os metodos de acordo com as coisas que for passado no construtor
     constructor(strategy) {
         this._database = strategy
     }
@@ -61,5 +61,8 @@ class contextStrategy extends ICrud {       // Classe abstrata chama os metodos 
     }
 }
 
-const contextMongo = new contextStrategy(new MongoDB())     // Instancia
-context.MongoDB()
+const contextMongo = new ContextStrategy(new MongoDB())     // Instancia
+contextMongo.create()
+
+const contextPostgres = new ContextStrategy(new Postgres())
+contextPostgres.create()
