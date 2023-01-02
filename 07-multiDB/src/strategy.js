@@ -61,6 +61,8 @@ class ContextStrategy {       // Classe abstrata chama os metodos de acordo com 
     }
 }
 
+
+
 const contextMongo = new ContextStrategy(new MongoDB())     // Instancia
 contextMongo.create()
 
