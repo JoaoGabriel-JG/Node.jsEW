@@ -1,6 +1,6 @@
 docker run \    =================>> CRIAR UM CONTAINER
     --name postgres \
-    -e POSTGRE_USER=JGBelardinucci \
+    -e POSTGRE_USER=JGBelar \
     -e POSTGRES_PASSWORD=Senha@2117\
     -e POSTGRES_DB=heroes \
     -p 5432:5432 \
