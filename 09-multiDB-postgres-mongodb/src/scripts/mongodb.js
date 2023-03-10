@@ -47,4 +47,5 @@ db.herois.update({ poder: 'Não Mais Humano' }, { $set: { poder: 'Besta Sob o Lu
 
 // Delete
 
-db.herois.remove({ })
+db.herois.remove({})    // Remove todos da base
+db.herois.remove({ nome: 'Atsushi Nakajima' })
