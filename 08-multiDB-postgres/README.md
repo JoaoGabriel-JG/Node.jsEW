@@ -21,21 +21,10 @@ docker run \    =================>> INTERFACE GRÁFICA
 
 ----  MONGODB
 
-docker run \
-    --name mongodb \
-    -p 27017:27017 \
-    -e MONGO_INITDB_ROOT_USERNAME=admin \
-    -e MONGO_INITDB_ROOT_PASSWORD=senhaadmin \
-    -d \
-    mongo:4
+docker run --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=senhaadmin -d mongo:4
 
-docker run \
-    --name mongoclient \
-    -p 3000:3000 \
-    --link mongodb:mongodb \
-    -d \
-    mongoclient/mongoclient
+docker run --name mongoclient -p 3000:3000 --link mongodb:mongodb -d mongoclient/mongoclient
 
-docker exec -it mongodb \  =================>> criar um banco com usuário
-    mongo --host localhost -u admin -p Tete@1708 --authenticationDatabase admin \
-    --eval "db.getSiblingDB('herois').createUser({user: 'jgjgjg', pwd: 'senha123@', roles: [{role: 'readWrite',  db: 'herois'}]})"
+=================>> criar um banco com usuário
+
+docker exec -it mongodb mongo --host localhost -u admin -p senhaadmin --authenticationDatabase admin --eval "db.getSiblingDB('herois').createUser({user: 'jgjgjg', pwd: 'minhasenhasecreta', roles: [{role: 'readWrite', db: 'herois'}]})"

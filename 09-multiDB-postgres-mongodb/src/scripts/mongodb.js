@@ -1,5 +1,5 @@
 // docker ps
-// docker exec -it ede1dd870600 mongo -u jgjgjg -p senha123@ --authenticationDatabase herois
+// docker exec -it 2e2196d5a005 mongo -u jgjgjg -p minhasenhasecreta --authenticationDatabase herois
 
 // Matabases
 // show dbs
