@@ -15,7 +15,7 @@ class MongoDB extends ICrud {   // Classe concreta para implementar funções th
     }
     
     async isConnected() {
-        const state = STATUS[connection.readyState]
+        const state = STATUS[this._driver.readyState]
         if(state === 'Conectado') return state
         if(state !== 'Conectando') return state
 
@@ -25,7 +25,7 @@ class MongoDB extends ICrud {   // Classe concreta para implementar funções th
     }
 
     defineModel() {
-        this._herois = new Mongoose.Schema({ 
+        heroiSchema = new Mongoose.Schema({ 
             nome: {
                 type: String,
                 required: true
@@ -39,7 +39,7 @@ class MongoDB extends ICrud {   // Classe concreta para implementar funções th
                 default: new Date()
             }
          })
-        const model = Mongoose.model('herois', heroiSchema)
+        this._herois = Mongoose.model('herois', heroiSchema)
     }
 
     connect() {
@@ -51,9 +51,10 @@ class MongoDB extends ICrud {   // Classe concreta para implementar funções th
                 console.log('Falha na conexão! ', error)
             })
         const connection = Mongoose.connection
+        this._driver = connection
         connection.once('open', () => console.log('database rodando!!'))
     }
-    
+
     async create(item) {
             const resultCadastrar = await model.create({ 
                 nome: 'Osamu Dazai',

@@ -1,5 +1,5 @@
 {
-  "name": "08-multidb-postgres",
+  "name": "09-multidb-postgres-mongodb",
   "version": "1.0.0",
   "description": "docker run \\    =================>> CRIAR UM CONTAINER\r     --name postgres \\\r     -e POSTGRE_USER=JGBelardinucci \\\r     -e POSTGRES_PASSWORD=Senha@2117\\\r     -e POSTGRES_DB=heroes \\\r     -p 5432:5432 \\\r     -d \\\r     postgres",
   "main": "index.js",
