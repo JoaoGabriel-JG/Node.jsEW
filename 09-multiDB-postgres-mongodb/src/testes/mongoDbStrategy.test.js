@@ -7,7 +7,7 @@ describe('MongoDB Suite de Testes', function () {
     this.beforeAll(async () => {
         await context.connect()
     })
-    it('Verificar conexão ', async () => {
+    it.only('Verificar conexão ', async () => {
         const result = await context.isConnected()
         const expected = 'Conectado'
 

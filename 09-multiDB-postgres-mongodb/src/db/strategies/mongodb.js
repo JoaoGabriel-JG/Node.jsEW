@@ -21,7 +21,7 @@ class MongoDB extends ICrud {   // Classe concreta para implementar funções th
 
         await new Promise(resolve => setTimeout(resolve, 1000))    
         
-        return STATUS[connection.readyState]
+        return STATUS[this._driver.readyState]
     }
 
     defineModel() {
