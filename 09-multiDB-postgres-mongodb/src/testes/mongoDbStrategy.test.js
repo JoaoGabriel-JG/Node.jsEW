@@ -7,6 +7,7 @@ const MOCK_HEROI_CADASTRAR = {
     poder: 'Pelo Corrupto Pesar'
 }
 const context = new Context(new MongoDb())
+
 describe('MongoDB Suite de Testes', function () {
     this.beforeAll(async () => {
         await context.connect()
@@ -18,7 +19,7 @@ describe('MongoDB Suite de Testes', function () {
         assert.deepEqual(result, expected)
     })
     it('cadastrar', async () => {
-        const { nome, poder } = context.create(MOCK_HEROI_CADASTRAR)
+        const { nome, poder } = await context.create(MOCK_HEROI_CADASTRAR)
         assert.deepEqual({ nome, poder }, MOCK_HEROI_CADASTRAR)
     })
 })

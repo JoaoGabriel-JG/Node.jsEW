@@ -37,6 +37,7 @@ async function main() {
      const listItens = await model.find()
      console.log('Items: ', listItens)
 }
+
 main()
 
 
