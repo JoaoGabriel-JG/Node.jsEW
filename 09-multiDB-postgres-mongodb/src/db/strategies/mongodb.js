@@ -67,6 +67,9 @@ class MongoDB extends ICrud {   // Classe concreta para implementar funções th
     update(id, item) {
         return this._herois.updateOne({ _id: id }, { $set: item })
     }
+    delete(id) {
+        return this._herois.deleteOne({ _id: id })
+    }
 }
 
 module.exports = MongoDB
