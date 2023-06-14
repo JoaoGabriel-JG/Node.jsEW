@@ -1,0 +1,23 @@
+{
+  "name": "09-multidb-postgres-mongodb",
+  "version": "1.0.0",
+  "description": "docker run \\    =================>> CRIAR UM CONTAINER\r     --name postgres \\\r     -e POSTGRE_USER=JGBelardinucci \\\r     -e POSTGRES_PASSWORD=Senha@2117\\\r     -e POSTGRES_DB=heroes \\\r     -p 5432:5432 \\\r     -d \\\r     postgres",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha src/testes/*.js",
+    "test:watch": "mocha src/testes/*.js -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.4",
+    "mongoose": "^6.10.0",
+    "pg": "^8.9.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.30.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
+}
