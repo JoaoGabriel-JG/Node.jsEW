@@ -41,7 +41,7 @@ describe('MongoDB Suite de Testes', function () {
     })
     it('atualizar', async () => {
         const result = await context.update(MOCK_HEROI_ATUALIZAR_ID, {
-            poder: 'Crime e Castigo'
+            nome: 'Funciona Por Favor'
         })
         assert.deepEqual(result.nModified, 1)
     })
