@@ -1,5 +1,5 @@
 docker run \    =================>> CRIAR UM CONTAINER
-    --name postgres -e POSTGRE_USER=JGBelardinucci -e POSTGRES_PASSWORD=Senha@2117 -e POSTGRES_DB=heroes -p 5432:5432 -d postgres 
+    --name postgres -e POSTGRE_USER=JGBelar -e POSTGRES_PASSWORD=Senha@2117 -e POSTGRES_DB=heroes -p 5432:5432 -d postgres 
 
 docker ps =================>> ver se está rodando 
 
@@ -17,4 +17,4 @@ docker run --name mongoclient -p 3000:3000 --link mongodb:mongodb -d mongoclient
 
 =================>> criar um banco com usuário
 
-docker exec -it mongodb   mongo --host localhost -u admin -p senhaadmin --authenticationDatabase admin --eval "db.getSiblingDB('herois').createUser({user: 'jgjgjg', pwd: 'senha123@', roles: [{role: 'readWrite',  db: 'herois'}]})"
+docker exec -it mongodb   mongo --host localhost -u admin -p senhaadmin --authenticationDatabase admin --eval "db.getSiblingDB('herois').createUser({user: 'jgjgjg', pwd: 'minhasenhasecreta', roles: [{role: 'readWrite',  db: 'herois'}]})"
